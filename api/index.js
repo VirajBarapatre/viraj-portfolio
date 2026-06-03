@@ -1,9 +1,28 @@
+import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const staticRoot = path.join(__dirname, '../dist/client');
 let server;
+
+const contentTypeMap = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.woff2': 'font/woff2',
+  '.woff': 'font/woff',
+  '.json': 'application/json; charset=utf-8',
+};
+
+function contentTypeFor(filePath) {
+  return contentTypeMap[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
+}
 
 async function getServer() {
   if (!server) {
@@ -22,10 +41,31 @@ async function readBody(req) {
   return Buffer.concat(chunks);
 }
 
+async function tryServeStatic(pathname, res) {
+  const relativePath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  const filePath = path.join(staticRoot, path.normalize(relativePath));
+  if (!filePath.startsWith(staticRoot + path.sep) && filePath !== staticRoot) return false;
+
+  try {
+    const data = await fs.readFile(filePath);
+    res.statusCode = 200;
+    res.setHeader('content-type', contentTypeFor(filePath));
+    res.end(data);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export default async function handler(req, res) {
   const protocol = req.headers['x-forwarded-proto'] || 'https';
   const host = req.headers.host || 'localhost';
   const url = new URL(req.url || '/', `${protocol}://${host}`);
+
+  if (url.pathname.startsWith('/assets/') || url.pathname === '/favicon.svg' || url.pathname === '/profile.jpg') {
+    const served = await tryServeStatic(url.pathname, res);
+    if (served) return;
+  }
 
   const headers = new Headers();
   for (const [key, value] of Object.entries(req.headers)) {
