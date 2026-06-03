@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +19,8 @@ const contentTypeMap = {
   '.woff': 'font/woff',
   '.json': 'application/json; charset=utf-8',
 };
+
+const staticExtensions = new Set(['.svg', '.jpg', '.jpeg', '.png', '.css', '.js', '.woff2', '.woff', '.json']);
 
 function contentTypeFor(filePath) {
   return contentTypeMap[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
@@ -43,8 +45,13 @@ async function readBody(req) {
 
 async function tryServeStatic(pathname, res) {
   const relativePath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
-  const filePath = path.join(staticRoot, path.normalize(relativePath));
-  if (!filePath.startsWith(staticRoot + path.sep) && filePath !== staticRoot) return false;
+  const safePath = path.normalize(relativePath);
+  const filePath = path.join(staticRoot, safePath);
+  const relative = path.relative(staticRoot, filePath);
+
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    return false;
+  }
 
   try {
     const data = await fs.readFile(filePath);
@@ -62,20 +69,20 @@ export default async function handler(req, res) {
   const host = req.headers.host || 'localhost';
   const url = new URL(req.url || '/', `${protocol}://${host}`);
 
-  if (url.pathname.startsWith('/assets/') || url.pathname === '/favicon.svg' || url.pathname === '/profile.jpg') {
+  if (staticExtensions.has(path.extname(url.pathname))) {
     const served = await tryServeStatic(url.pathname, res);
     if (served) return;
   }
 
   const headers = new Headers();
-  for (const [key, value] of Object.entries(req.headers)) {
-    if (!value) continue;
+  Object.entries(req.headers).forEach(([key, value]) => {
+    if (!value) return;
     if (Array.isArray(value)) {
-      for (const v of value) headers.append(key, v);
+      value.forEach((v) => headers.append(key, v));
     } else {
       headers.set(key, value);
     }
-  }
+  });
 
   const body = await readBody(req);
   const requestInit = {
@@ -89,9 +96,9 @@ export default async function handler(req, res) {
   const response = await serverEntry.fetch(request);
 
   res.statusCode = response.status;
-  for (const [key, value] of response.headers) {
+  response.headers.forEach((value, key) => {
     res.setHeader(key, value);
-  }
+  });
 
   const buffer = Buffer.from(await response.arrayBuffer());
   res.end(buffer);
