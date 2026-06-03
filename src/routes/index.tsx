@@ -253,24 +253,31 @@ function Portfolio() {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href="mailto:hello@viraj.dev"
+                href="mailto:virajbarapatre@outlook.com"
                 className="rounded-full bg-[--indigo-glow] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[--shadow-glow] transition hover:brightness-110"
               >
-                hello@viraj.dev
+                virajbarapatre@outlook.com
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/viraj-barapatre"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full border border-border px-6 py-3 text-sm transition hover:bg-card"
               >
                 LinkedIn
               </a>
               <a
-                href="#"
+                href="https://github.com/VirajBarapatre"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full border border-border px-6 py-3 text-sm transition hover:bg-card"
               >
                 GitHub
               </a>
             </div>
+            <p className="mt-6 text-sm text-muted-foreground">
+              +91 92847 78451
+            </p>
           </div>
         </div>
       </section>
