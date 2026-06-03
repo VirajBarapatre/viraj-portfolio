@@ -8,17 +8,24 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfolio of Viraj Ravindra Barapatre — quantitative developer, data analyst, and AI engineer building real-time vision systems, anomaly detection, and pricing models.",
+          "Portfolio of Viraj Ravindra Barapatre — Class of 2026 CS graduate building high-fidelity AI platforms, web-scale cloud architectures, and distributed data systems.",
       },
       { property: "og:title", content: "Viraj Barapatre — Quant Developer & AI Engineer" },
       {
         property: "og:description",
-        content: "Selected work across vision-language surveillance, anomaly detection, and dynamic pricing AI.",
+        content:
+          "Selected work across vision-language surveillance, anomaly detection, and dynamic pricing AI. 600/600 SIG CodeSignal, 100th percentile.",
       },
     ],
   }),
   component: Portfolio,
 });
+
+const metrics = [
+  { value: "600/600", label: "SIG CodeSignal", note: "100th Percentile · Verified" },
+  { value: "50,000+", label: "Financial Records / day", note: "Automated & validated" },
+  { value: "99.9%", label: "Data Integrity", note: "PostgreSQL · production" },
+];
 
 const projects = [
   {
@@ -58,7 +65,7 @@ const projects = [
     tag: "Medical AI",
     title: "Brain Tumor Detection",
     subtitle: "MRI classification system",
-    body: "Deep learning model for automated brain tumor detection and classification from MRI scans. Achieves high diagnostic accuracy via transfer learning on medical imaging datasets.",
+    body: "Deep learning model for automated brain tumor detection and classification from MRI scans. High diagnostic accuracy via transfer learning on medical imaging datasets.",
     stack: ["CNN", "Transfer Learning", "Keras", "OpenCV"],
     href: "https://github.com/VirajBarapatre/Brain-Tumor-Detection-System",
   },
@@ -66,9 +73,75 @@ const projects = [
     tag: "Medical AI",
     title: "Skin Cancer Detection",
     subtitle: "Dermatoscopic image classifier",
-    body: "AI-powered system for classifying skin lesions from dermatoscopic images. Leverages deep convolutional networks to distinguish benign from malignant cases with clinical-grade precision.",
+    body: "AI-powered system for classifying skin lesions from dermatoscopic images. Deep convolutional networks distinguish benign from malignant cases with clinical-grade precision.",
     stack: ["ResNet", "PyTorch", "OpenCV", "scikit-learn"],
     href: "https://github.com/VirajBarapatre/Skin-Cancer-Detection-System",
+  },
+];
+
+const skills: { category: string; items: string[] }[] = [
+  {
+    category: "Languages",
+    items: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "scikit-learn",
+      "TensorFlow",
+      "Keras",
+      "SQL",
+      "PostgreSQL",
+      "MySQL",
+      "C++",
+      "R",
+      "TypeScript",
+    ],
+  },
+  {
+    category: "Infrastructure & Cloud",
+    items: ["GCP", "Kubernetes", "Docker", "Terraform", "Git / GitHub", "CI/CD"],
+  },
+  {
+    category: "Frameworks & UI",
+    items: ["React", "Next.js", "Tailwind CSS", "Node.js", "Webpack", "Postman"],
+  },
+  {
+    category: "Specialized Domains",
+    items: [
+      "Deep Learning",
+      "Computer Vision",
+      "Quantitative Finance",
+      "Anomaly Detection",
+      "ETL / ELT",
+      "Prompt Engineering",
+    ],
+  },
+  {
+    category: "Business Intelligence",
+    items: ["Advanced Excel", "Tableau", "Power BI", "Alteryx"],
+  },
+];
+
+const credentials = [
+  {
+    title: "SIG CodeSignal — 600 / 600",
+    issuer: "Susquehanna International Group",
+    detail: "100th percentile · elite algorithmic reasoning and core software design.",
+  },
+  {
+    title: "RDBMS: PostgreSQL, PHP & MySQL",
+    issuer: "IIT Bombay",
+    detail: "Professional certification in advanced data systems and backend infrastructure.",
+  },
+  {
+    title: "OCI 2025 AI Foundations Associate",
+    issuer: "Oracle",
+    detail: "Enterprise-scale AI implementation, cloud virtualization, and governance.",
+  },
+  {
+    title: "Data Science · CS · SQL Engineering",
+    issuer: "Codecademy",
+    detail: "Completed advanced professional career paths across the data stack.",
   },
 ];
 
@@ -104,7 +177,9 @@ function Portfolio() {
         </a>
         <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
           <a href="#work" className="transition hover:text-foreground">Work</a>
-          <a href="#about" className="transition hover:text-foreground">About</a>
+          <a href="#experience" className="transition hover:text-foreground">Experience</a>
+          <a href="#skills" className="transition hover:text-foreground">Skills</a>
+          <a href="#credentials" className="transition hover:text-foreground">Credentials</a>
           <a href="#contact" className="transition hover:text-foreground">Contact</a>
         </nav>
         <a
@@ -116,10 +191,10 @@ function Portfolio() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="mx-auto max-w-7xl px-6 pt-16 pb-28 md:px-12 md:pt-28 md:pb-40">
+      <section id="top" className="mx-auto max-w-7xl px-6 pt-16 pb-20 md:px-12 md:pt-28 md:pb-28">
         <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
           <span className="h-px w-10 bg-border" />
-          Portfolio · 2026
+          Portfolio · Class of 2026
         </div>
         <h1 className="mt-8 font-display text-5xl leading-[1.05] tracking-tight text-balance md:text-8xl">
           Viraj Ravindra <em className="text-[--indigo-glow] not-italic">Barapatre</em>
@@ -128,9 +203,9 @@ function Portfolio() {
           <br />
           Data Analyst & <em className="italic">AI Engineer.</em>
         </h1>
-        <p className="mt-10 max-w-2xl text-lg text-muted-foreground md:text-xl">
-          I build real-time intelligent systems at the intersection of finance, computer vision, and
-          applied machine learning — engineered for latency, evaluated with rigor.
+        <p className="mt-10 max-w-3xl text-lg text-muted-foreground md:text-xl">
+          Class of 2026 Computer Science student specializing in building high-fidelity AI platforms,
+          web-scale cloud architectures, and optimizing distributed data systems.
         </p>
         <div className="mt-12 flex flex-wrap gap-4">
           <a
@@ -147,14 +222,114 @@ function Portfolio() {
             Resume / Contact
           </a>
         </div>
+
+        {/* Hero metrics */}
+        <div className="mt-20 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {metrics.map((m) => (
+            <div
+              key={m.label}
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition hover:border-[--indigo-glow] hover:shadow-[--shadow-glow]"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[--indigo-glow] to-transparent opacity-60" />
+              <div className="font-display text-5xl tracking-tight text-foreground md:text-6xl">
+                {m.value}
+              </div>
+              <div className="mt-3 text-sm font-medium text-foreground">{m.label}</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {m.note}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="mx-auto max-w-7xl px-6 pb-28 md:px-12">
+        <div className="grid gap-16 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">About</div>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl">
+              <em className="italic">Engineering</em> at the edge of data.
+            </h2>
+          </div>
+          <div className="space-y-6 text-lg leading-relaxed text-muted-foreground md:col-span-7 md:col-start-6">
+            <p>
+              Highly analytical and research-oriented Computer Science graduate (Class of 2026) with
+              a strong foundation in data structures, algorithms, and deep learning frameworks.
+            </p>
+            <p>
+              Proven track record at <span className="text-foreground">Trust Fintech</span> engineering
+              automated validation pipelines and managing complex RDBMS infrastructures to mitigate
+              systemic ecosystem risks.
+            </p>
+            <p>
+              Expert at leveraging quantitative data analysis, advanced prompt engineering for Large
+              Language Models (LLMs), and containerized cloud orchestration to solve analytically
+              complex problems at scale.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="mx-auto max-w-7xl px-6 pb-28 md:px-12">
+        <div className="mb-12">
+          <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Experience</div>
+          <h2 className="mt-3 font-display text-4xl md:text-5xl">
+            Professional <em className="italic text-[--indigo-glow]">track record</em>
+          </h2>
+        </div>
+
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-card/60 p-8 backdrop-blur md:p-12">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h3 className="font-display text-3xl md:text-4xl">Trust Fintech Limited</h3>
+              <p className="mt-1 text-sm italic text-[--indigo-glow]">
+                Data Science & Quantitative Intern
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">Nagpur, India</p>
+            </div>
+            <div className="rounded-full border border-border px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              Dec 2025 — Present
+            </div>
+          </div>
+
+          <ul className="mt-10 grid gap-6 md:grid-cols-2">
+            {[
+              {
+                k: "Automated ML Data Pipelines",
+                v: "Engineered robust validation pipelines to process and clean over 50,000 financial records daily, optimizing data ingestion and driving a 35% gain in system operational efficiency.",
+              },
+              {
+                k: "Data Integrity & RDBMS Architecture",
+                v: "Managed complex PostgreSQL infrastructures to guarantee 99.9% integrity for critical unallocated datasets, mitigating technical risk and establishing secure storage baselines.",
+              },
+              {
+                k: "Data Analytics & Visualization",
+                v: "Produced ad-hoc statistical dashboards for senior stakeholders, leveraging advanced query optimization to translate fragmented analytics into decision-ready commercial strategies.",
+              },
+              {
+                k: "Process Automation",
+                v: "Created custom Python ETL scripts to bridge data gaps between siloed application networks, reducing manual overhead by automating model population routines.",
+              },
+            ].map((item) => (
+              <li key={item.k} className="border-t border-border pt-5">
+                <div className="font-display text-xl text-foreground">{item.k}</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.v}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* Work — Masonry */}
-      <section id="work" className="mx-auto max-w-7xl px-6 pb-32 md:px-12">
+      <section id="work" className="mx-auto max-w-7xl px-6 pb-28 md:px-12">
         <div className="mb-12 flex items-end justify-between">
           <div>
             <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Selected Work</div>
-            <h2 className="mt-3 font-display text-4xl md:text-5xl">Recent <em className="italic text-[--indigo-glow]">projects</em></h2>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl">
+              Recent <em className="italic text-[--indigo-glow]">projects</em>
+            </h2>
           </div>
           <div className="hidden text-sm text-muted-foreground md:block">
             {projects.length} case studies
@@ -175,13 +350,9 @@ function Portfolio() {
                   <span>{p.tag}</span>
                   <span className="font-mono">0{i + 1}</span>
                 </div>
-                <h3 className="mt-6 font-display text-3xl leading-tight md:text-4xl">
-                  {p.title}
-                </h3>
+                <h3 className="mt-6 font-display text-3xl leading-tight md:text-4xl">{p.title}</h3>
                 <p className="mt-1 text-sm italic text-[--indigo-glow]">{p.subtitle}</p>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-                  {p.body}
-                </p>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
               </div>
               <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap gap-2">
@@ -203,37 +374,91 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="mx-auto max-w-7xl px-6 pb-32 md:px-12">
-        <div className="grid gap-16 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">About</div>
+      {/* Skills */}
+      <section id="skills" className="mx-auto max-w-7xl px-6 pb-28 md:px-12">
+        <div className="mb-12 flex items-end justify-between">
+          <div>
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Toolkit</div>
             <h2 className="mt-3 font-display text-4xl md:text-5xl">
-              <em className="italic">Engineering</em> at the edge of data.
+              Technical <em className="italic text-[--indigo-glow]">skills matrix</em>
             </h2>
           </div>
-          <div className="space-y-6 text-lg leading-relaxed text-muted-foreground md:col-span-7 md:col-start-6">
-            <p>
-              I work where quantitative finance meets modern AI infrastructure — designing
-              systems that turn noisy, real-time data into actionable signal.
-            </p>
-            <p>
-              My toolkit spans deep learning frameworks, distributed serving on Kubernetes, and
-              the statistical inference required to trust a model in production.
-            </p>
-            <div className="grid grid-cols-2 gap-6 pt-6">
-              {[
-                ["Focus", "Quant · AI · Vision"],
-                ["Stack", "Python · TF · K8s"],
-                ["Approach", "Latency-first"],
-                ["Rigor", "Backtested"],
-              ].map(([k, v]) => (
-                <div key={k} className="border-t border-border pt-4">
-                  <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{k}</div>
-                  <div className="mt-2 font-display text-xl text-foreground">{v}</div>
-                </div>
-              ))}
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {skills.map((g) => (
+            <div
+              key={g.category}
+              className="rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition hover:border-[--indigo-glow]"
+            >
+              <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                {g.category}
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {g.items.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-border bg-background/40 px-3 py-1.5 text-xs text-foreground/90"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Credentials & Education */}
+      <section id="credentials" className="mx-auto max-w-7xl px-6 pb-28 md:px-12">
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Credentials</div>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl">
+              Certifications & <em className="italic text-[--indigo-glow]">achievements</em>
+            </h2>
+
+            <div className="mt-10 rounded-2xl border border-border bg-card/60 p-7 backdrop-blur">
+              <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Education</div>
+              <h3 className="mt-4 font-display text-2xl text-foreground">
+                B.Tech, Computer Science & Engineering
+              </h3>
+              <p className="mt-1 text-sm italic text-[--indigo-glow]">
+                Specialization: Artificial Intelligence
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                G.H. Raisoni College of Engineering (GHRCE), Nagpur
+              </p>
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <div className="border-t border-border pt-3">
+                  <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                    Graduation
+                  </div>
+                  <div className="mt-1 font-display text-lg text-foreground">June 2026</div>
+                </div>
+                <div className="border-t border-border pt-3">
+                  <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">CGPA</div>
+                  <div className="mt-1 font-display text-lg text-foreground">8.01 / 10.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4 md:col-span-7">
+            {credentials.map((c) => (
+              <div
+                key={c.title}
+                className="group flex flex-col gap-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur transition hover:border-[--indigo-glow] hover:shadow-[--shadow-glow] md:flex-row md:items-center md:justify-between md:gap-8"
+              >
+                <div>
+                  <div className="font-display text-xl text-foreground md:text-2xl">{c.title}</div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                    {c.issuer}
+                  </div>
+                </div>
+                <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{c.detail}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -274,10 +499,13 @@ function Portfolio() {
               >
                 GitHub
               </a>
+              <a
+                href="tel:+919284778451"
+                className="rounded-full border border-border px-6 py-3 text-sm transition hover:bg-card"
+              >
+                +91 92847 78451
+              </a>
             </div>
-            <p className="mt-6 text-sm text-muted-foreground">
-              +91 92847 78451
-            </p>
           </div>
         </div>
       </section>
