@@ -16,6 +16,7 @@ Open http://localhost:8080 in your browser.
 ## Deployment suggestions
 
 - Vercel: create a new project, point to this repo, and set the framework to `vite` / `static` if needed. Vercel will auto-detect.
+- Note: this repo is ready for Vercel with `npm run build` and `dist` as the publish directory.
 - Netlify: connect repo and set build command `npm run build` and publish directory `dist`.
 
 ## Enhancements included
