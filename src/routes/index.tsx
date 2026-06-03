@@ -163,13 +163,13 @@ function Portfolio() {
 
         <div className="grid auto-rows-[minmax(220px,auto)] grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <article
+            <a
               key={p.title}
-              className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[--indigo-glow] hover:shadow-[--shadow-glow] ${p.span ?? ""}`}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[--indigo-glow] hover:shadow-[--shadow-glow]"
             >
-              {p.accent && (
-                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[--indigo-deep]/40 via-transparent to-transparent" />
-              )}
               <div>
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   <span>{p.tag}</span>
@@ -198,7 +198,7 @@ function Portfolio() {
                   <span className="font-mono text-xs text-[--indigo-glow]">{p.metric}</span>
                 )}
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </section>
