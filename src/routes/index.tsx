@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -81,44 +81,94 @@ const projects = [
 
 const skills: { category: string; items: string[] }[] = [
   {
-    category: "Languages",
+    category: "Programming & Query Languages",
     items: [
       "Python",
+      "JavaScript",
+      "TypeScript",
+      "C++",
+      "PHP",
+      "SQL",
+      "NoSQL",
+      "HTML5",
+    ],
+  },
+  {
+    category: "Data Science & AI",
+    items: [
+      "Data Science",
+      "Machine Learning",
+      "Deep Learning",
+      "Artificial Intelligence (AI)",
+      "Natural Language Processing (NLP)",
+      "Large Language Models (LLM)",
+      "Predictive Analytics",
+      "Predictive Modeling",
+      "Statistical Data Analysis",
+      "Data Analysis",
+      "Data Analytics",
+      "Quantitative Analytics",
+      "Quantitative Finance",
+      "Anomaly Detection",
+      "Prompt Engineering",
+    ],
+  },
+  {
+    category: "Data Engineering & Cloud",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "RDBMS",
+      "Database Design",
+      "Database Development",
+      "Data Pipelines",
+      "Extract, Transform, Load (ETL)",
+      "Data Management",
+      "Cloud Computing",
+      "Amazon Web Services (AWS)",
+      "Google Cloud Platform (GCP)",
+      "Microsoft Azure",
+      "Terraform",
+    ],
+  },
+  {
+    category: "Tools, Frameworks & Platforms",
+    items: [
       "Pandas",
       "NumPy",
       "scikit-learn",
       "TensorFlow",
       "Keras",
-      "SQL",
-      "PostgreSQL",
-      "MySQL",
-      "C++",
-      "R",
-      "TypeScript",
+      "FastAPI",
+      "REST APIs",
+      "Tailwind CSS",
+      "Tableau",
+      "Microsoft Power BI",
+      "Alteryx",
+      "Git",
+      "GitHub",
+      "Continuous Integration and Continuous Delivery (CI/CD)",
     ],
   },
   {
-    category: "Infrastructure & Cloud",
-    items: ["GCP", "Kubernetes", "Docker", "Terraform", "Git / GitHub", "CI/CD"],
-  },
-  {
-    category: "Frameworks & UI",
-    items: ["React", "Next.js", "Tailwind CSS", "Node.js", "Webpack", "Postman"],
-  },
-  {
-    category: "Specialized Domains",
+    category: "Analytical & Leadership Skills",
     items: [
-      "Deep Learning",
-      "Computer Vision",
-      "Quantitative Finance",
-      "Anomaly Detection",
-      "ETL / ELT",
-      "Prompt Engineering",
+      "Algorithms",
+      "Data Structures",
+      "Business Analytics",
+      "Business Intelligence Tools",
+      "Decision-Making",
+      "Problem Solving",
+      "Critical Thinking",
+      "Logical Reasoning",
+      "Communication",
+      "Team Collaboration",
+      "Teamwork",
+      "Project Management",
+      "Creative Project Management",
+      "Creativity Skills",
+      "Time Management",
     ],
-  },
-  {
-    category: "Business Intelligence",
-    items: ["Advanced Excel", "Tableau", "Power BI", "Alteryx"],
   },
 ];
 
@@ -156,6 +206,39 @@ function Portfolio() {
     return () => window.removeEventListener("mousemove", handler);
   }, []);
 
+  // Hide header when scrolling down, show when scrolling up
+  const [navVisible, setNavVisible] = useState(true);
+  const lastScrollY = useRef<number>(0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const onScroll = () => {
+      const currentY = window.scrollY || 0;
+      const delta = currentY - lastScrollY.current;
+      const threshold = 10; // pixels of movement required to toggle
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (delta < -threshold) {
+            // scrolled up more than threshold
+            setNavVisible(true);
+          } else if (delta > threshold && currentY > 80) {
+            // scrolled down more than threshold and past top area
+            setNavVisible(false);
+          }
+          lastScrollY.current = currentY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    lastScrollY.current = window.scrollY || 0;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* Ambient glow */}
@@ -171,64 +254,83 @@ function Portfolio() {
       </div>
 
       {/* Nav */}
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12">
-        <a href="#top" className="font-display text-xl tracking-tight">
-          Viraj<span className="text-[--indigo-glow]">.</span>
-        </a>
-        <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#work" className="transition hover:text-foreground">Work</a>
-          <a href="#experience" className="transition hover:text-foreground">Experience</a>
-          <a href="#skills" className="transition hover:text-foreground">Skills</a>
-          <a href="#credentials" className="transition hover:text-foreground">Credentials</a>
-          <a href="#contact" className="transition hover:text-foreground">Contact</a>
-        </nav>
-        <a
-          href="#contact"
-          className="rounded-full border border-border bg-card/40 px-4 py-2 text-xs uppercase tracking-[0.18em] text-foreground backdrop-blur transition hover:border-[--indigo-glow] hover:text-[--indigo-glow]"
-        >
-          Get in touch
-        </a>
+      <header className={`fixed left-0 right-0 top-0 z-50 backdrop-blur-sm bg-background/60 transition-transform duration-300 ${navVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+        <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center max-w-7xl px-6 py-4 md:px-12">
+          <a href="#top" className="font-display text-xl tracking-wide" style={{letterSpacing: '0.02em'}}>
+            Viraj<span className="text-[--indigo-glow]">.</span>
+          </a>
+          <nav className="hidden md:flex justify-center gap-8 text-sm text-muted-foreground">
+            <a href="#work" className="transition hover:text-foreground">Work</a>
+            <a href="#experience" className="transition hover:text-foreground">Experience</a>
+            <a href="#skills" className="transition hover:text-foreground">Skills</a>
+            <a href="#credentials" className="transition hover:text-foreground">Credentials</a>
+            <a href="#contact" className="transition hover:text-foreground">Contact</a>
+          </nav>
+          <div className="w-20" aria-hidden="true" />
+        </div>
       </header>
 
       {/* Hero */}
-      <section id="top" className="mx-auto max-w-7xl px-6 pt-16 pb-20 md:px-12 md:pt-28 md:pb-28">
+      <section id="top" className="mx-auto max-w-7xl px-6 pt-12 pb-20 md:px-12 md:pt-20 md:pb-28">
         <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
           <span className="h-px w-10 bg-border" />
           Portfolio · Class of 2026
         </div>
-        <h1 className="mt-8 font-display text-5xl leading-[1.05] tracking-tight text-balance md:text-8xl">
-          Viraj Ravindra <em className="text-[--indigo-glow] not-italic">Barapatre</em>
-          <br />
-          <span className="text-muted-foreground">Quantitative Developer,</span>
-          <br />
-          Data Analyst & <em className="italic">AI Engineer.</em>
-        </h1>
-        <p className="mt-10 max-w-3xl text-lg text-muted-foreground md:text-xl">
-          Class of 2026 Computer Science student specializing in building high-fidelity AI platforms,
-          web-scale cloud architectures, and optimizing distributed data systems.
-        </p>
-        <div className="mt-12 flex flex-wrap gap-4">
-          <a
-            href="#work"
-            className="group inline-flex items-center gap-2 rounded-full bg-[--indigo-glow] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[--shadow-glow] transition hover:brightness-110"
-          >
-            View selected work
-            <span className="transition group-hover:translate-x-1">→</span>
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:bg-card"
-          >
-            Resume / Contact
-          </a>
+        <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,1fr)_240px] md:items-start">
+          <div className="space-y-10">
+            <h1
+              className="font-display text-5xl leading-[1.05] tracking-tight text-balance md:text-8xl animate-fade-up will-change-anim"
+              style={{ ['--delay' as any]: '120ms' }}
+            >
+              Viraj Ravindra <em className="text-[--indigo-glow] not-italic">Barapatre</em>
+              <br />
+              <span className="text-muted-foreground">Quantitative Developer,</span>
+              <br />
+              Data Analyst & <em className="italic">AI Engineer.</em>
+            </h1>
+            <p
+              className="max-w-3xl text-lg text-muted-foreground md:text-xl animate-fade-up will-change-anim"
+              style={{ ['--delay' as any]: '300ms' }}
+            >
+              Class of 2026 Computer Science student specializing in building high-fidelity AI platforms,
+              web-scale cloud architectures, and optimizing distributed data systems.
+            </p>
+            <div
+              className="flex flex-wrap gap-4 animate-fade-up will-change-anim items-center"
+              style={{ ['--delay' as any]: '480ms' }}
+            >
+              <a
+                href="#work"
+                className="group inline-flex items-center gap-2 rounded-full border-2 border-[--indigo-glow] px-6 py-3 text-sm font-medium text-[--indigo-glow] bg-transparent transition hover:bg-[--indigo-glow] hover:text-primary-foreground shadow-sm hover:shadow-[--shadow-glow]"
+              >
+                View selected work
+                <span className="ml-2 transition-transform transform group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:bg-card hover:border-[--indigo-glow]"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+          <div className="hidden md:flex items-start justify-end">
+            <div
+              className="hero-portrait animate-fade-up will-change-anim"
+              style={{ ['--delay' as any]: '640ms', transform: `translate3d(${(mouse.x - 50) * 0.3}px, ${46 + (mouse.y - 50) * 0.15}px, 0)` }}
+            >
+              <img src="/profile.jpg" alt="Profile photo" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.6'; }} />
+            </div>
+          </div>
         </div>
 
         {/* Hero metrics */}
         <div className="mt-20 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {metrics.map((m) => (
+          {metrics.map((m, i) => (
             <div
               key={m.label}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition hover:border-[--indigo-glow] hover:shadow-[--shadow-glow]"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition hover:border-[--indigo-glow] hover:shadow-[--shadow-glow] animate-fade-up will-change-anim"
+              style={{ ['--delay' as any]: `${120 + i * 120}ms` }}
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[--indigo-glow] to-transparent opacity-60" />
               <div className="font-display text-5xl tracking-tight text-foreground md:text-6xl">
@@ -343,7 +445,8 @@ function Portfolio() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[--indigo-glow] hover:shadow-[--shadow-glow]"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[--indigo-glow] hover:shadow-[--shadow-glow] animate-fade-up will-change-anim"
+              style={{ ['--delay' as any]: `${180 + i * 90}ms` }}
             >
               <div>
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -479,7 +582,7 @@ function Portfolio() {
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="mailto:virajbarapatre@outlook.com"
-                className="rounded-full bg-[--indigo-glow] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[--shadow-glow] transition hover:brightness-110"
+                className="rounded-full border border-border px-6 py-3 text-sm transition hover:bg-card"
               >
                 virajbarapatre@outlook.com
               </a>
@@ -511,9 +614,8 @@ function Portfolio() {
       </section>
 
       <footer className="mx-auto max-w-7xl px-6 pb-10 md:px-12">
-        <div className="flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
+        <div className="flex justify-center border-t border-border pt-8 text-xs text-muted-foreground">
           <span>© 2026 Viraj Ravindra Barapatre</span>
-          <span className="font-mono">Built with intent · Midnight Indigo</span>
         </div>
       </footer>
     </div>

@@ -89,6 +89,7 @@
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4 {
@@ -113,4 +114,59 @@
 @utility grain-overlay {
   background-image: radial-gradient(circle at 20% 20%, color-mix(in oklab, var(--indigo-glow) 18%, transparent), transparent 55%),
                     radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--indigo-deep) 35%, transparent), transparent 60%);
+}
+
+/* Animation variables (global control) */
+:root {
+  --anim-duration: 700ms;
+  --anim-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --anim-move: 12px;
+}
+
+/* Entrance animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--anim-move));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(var(--anim-move));
+  animation-name: fadeUp;
+  animation-duration: var(--anim-duration);
+  animation-timing-function: var(--anim-ease);
+  animation-fill-mode: forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+.will-change-anim {
+  will-change: transform, opacity;
+}
+
+/* Portrait styles */
+.hero-portrait {
+  width: min(220px, 100%);
+  aspect-ratio: 1 / 1;
+  min-height: 240px;
+  max-height: 280px;
+  border-radius: 28px;
+  box-shadow: 0 24px 70px -34px color-mix(in oklab, var(--indigo-glow) 42%, transparent), 0 3px 18px rgba(0,0,0,0.28);
+  border: 1px solid color-mix(in oklab, var(--indigo-deep) 16%, transparent);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.06));
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
 }
