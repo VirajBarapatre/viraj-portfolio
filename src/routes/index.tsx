@@ -22,20 +22,20 @@ export const Route = createFileRoute("/")({
 
 const projects = [
   {
-    tag: "Vision · Real-time",
-    title: "Trinetra",
-    subtitle: "AI-Augmented Surveillance Platform",
-    body: "End-to-end, real-time threat identification platform leveraging Vision-Language Model APIs for automated video analysis. Containerized on Kubernetes to serve high-frequency model triggers with minimal latency.",
-    stack: ["VLM APIs", "Kubernetes", "Python", "FastAPI"],
-    span: "md:row-span-2",
-    accent: true,
-  },
-  {
     tag: "Quant · Anomaly",
     title: "AML-Sentinel-AI",
     subtitle: "Anomaly Detection Engine",
     body: "Unsupervised ML engine using Isolation Forest to surface non-linear structural risks in financial datasets. Rigorous backtesting and statistical inference to minimize false positives.",
     stack: ["Isolation Forest", "Pandas", "scikit-learn"],
+    href: "https://github.com/VirajBarapatre/AML-Sentinel-AI",
+  },
+  {
+    tag: "Vision · Real-time",
+    title: "CampusEYE",
+    subtitle: "AI-Augmented Surveillance Platform",
+    body: "End-to-end campus surveillance system with real-time threat detection leveraging computer vision pipelines. Engineered for low-latency inference and scalable event alerting.",
+    stack: ["OpenCV", "Python", "Deep Learning", "Flask"],
+    href: "https://github.com/VirajBarapatre/CampusEYE",
   },
   {
     tag: "Deep Learning",
@@ -44,14 +44,31 @@ const projects = [
     body: "Deep neural network (TensorFlow / Keras) simulating market elasticity and predicting price fluctuations. Achieved RMSE of 13.36 against held-out market data.",
     stack: ["TensorFlow", "Keras", "NumPy"],
     metric: "RMSE 13.36",
-    span: "md:row-span-2",
+    href: "https://github.com/VirajBarapatre/dynamic-pricing-simulator",
   },
   {
-    tag: "Research",
-    title: "Backtesting Notes",
-    subtitle: "Statistical inference playbook",
-    body: "Ongoing notes on rolling-window evaluation, walk-forward analysis, and confidence calibration for ML systems deployed in production finance.",
-    stack: ["Statistics", "Python"],
+    tag: "CV · OCR",
+    title: "Text-CAPTCHA-Solver",
+    subtitle: "Automated CAPTCHA recognition",
+    body: "Computer vision pipeline that segments and classifies distorted text CAPTCHAs using CNN-based OCR. Trained on synthetic data augmentation for robust generalization.",
+    stack: ["CNN", "OCR", "Python", "TensorFlow"],
+    href: "https://github.com/VirajBarapatre/Text-CAPTCHA-Solver",
+  },
+  {
+    tag: "Medical AI",
+    title: "Brain Tumor Detection",
+    subtitle: "MRI classification system",
+    body: "Deep learning model for automated brain tumor detection and classification from MRI scans. Achieves high diagnostic accuracy via transfer learning on medical imaging datasets.",
+    stack: ["CNN", "Transfer Learning", "Keras", "OpenCV"],
+    href: "https://github.com/VirajBarapatre/Brain-Tumor-Detection-System",
+  },
+  {
+    tag: "Medical AI",
+    title: "Skin Cancer Detection",
+    subtitle: "Dermatoscopic image classifier",
+    body: "AI-powered system for classifying skin lesions from dermatoscopic images. Leverages deep convolutional networks to distinguish benign from malignant cases with clinical-grade precision.",
+    stack: ["ResNet", "PyTorch", "OpenCV", "scikit-learn"],
+    href: "https://github.com/VirajBarapatre/Skin-Cancer-Detection-System",
   },
 ];
 
@@ -146,13 +163,13 @@ function Portfolio() {
 
         <div className="grid auto-rows-[minmax(220px,auto)] grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <article
+            <a
               key={p.title}
-              className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[--indigo-glow] hover:shadow-[--shadow-glow] ${p.span ?? ""}`}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card/60 p-7 backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-[--indigo-glow] hover:shadow-[--shadow-glow]"
             >
-              {p.accent && (
-                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[--indigo-deep]/40 via-transparent to-transparent" />
-              )}
               <div>
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   <span>{p.tag}</span>
@@ -181,7 +198,7 @@ function Portfolio() {
                   <span className="font-mono text-xs text-[--indigo-glow]">{p.metric}</span>
                 )}
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </section>
@@ -236,24 +253,31 @@ function Portfolio() {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href="mailto:hello@viraj.dev"
+                href="mailto:virajbarapatre@outlook.com"
                 className="rounded-full bg-[--indigo-glow] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[--shadow-glow] transition hover:brightness-110"
               >
-                hello@viraj.dev
+                virajbarapatre@outlook.com
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/viraj-barapatre"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full border border-border px-6 py-3 text-sm transition hover:bg-card"
               >
                 LinkedIn
               </a>
               <a
-                href="#"
+                href="https://github.com/VirajBarapatre"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full border border-border px-6 py-3 text-sm transition hover:bg-card"
               >
                 GitHub
               </a>
             </div>
+            <p className="mt-6 text-sm text-muted-foreground">
+              +91 92847 78451
+            </p>
           </div>
         </div>
       </section>
