@@ -22,20 +22,20 @@ export const Route = createFileRoute("/")({
 
 const projects = [
   {
-    tag: "Vision · Real-time",
-    title: "Trinetra",
-    subtitle: "AI-Augmented Surveillance Platform",
-    body: "End-to-end, real-time threat identification platform leveraging Vision-Language Model APIs for automated video analysis. Containerized on Kubernetes to serve high-frequency model triggers with minimal latency.",
-    stack: ["VLM APIs", "Kubernetes", "Python", "FastAPI"],
-    span: "md:row-span-2",
-    accent: true,
-  },
-  {
     tag: "Quant · Anomaly",
     title: "AML-Sentinel-AI",
     subtitle: "Anomaly Detection Engine",
     body: "Unsupervised ML engine using Isolation Forest to surface non-linear structural risks in financial datasets. Rigorous backtesting and statistical inference to minimize false positives.",
     stack: ["Isolation Forest", "Pandas", "scikit-learn"],
+    href: "https://github.com/VirajBarapatre/AML-Sentinel-AI",
+  },
+  {
+    tag: "Vision · Real-time",
+    title: "CampusEYE",
+    subtitle: "AI-Augmented Surveillance Platform",
+    body: "End-to-end campus surveillance system with real-time threat detection leveraging computer vision pipelines. Engineered for low-latency inference and scalable event alerting.",
+    stack: ["OpenCV", "Python", "Deep Learning", "Flask"],
+    href: "https://github.com/VirajBarapatre/CampusEYE",
   },
   {
     tag: "Deep Learning",
@@ -44,14 +44,31 @@ const projects = [
     body: "Deep neural network (TensorFlow / Keras) simulating market elasticity and predicting price fluctuations. Achieved RMSE of 13.36 against held-out market data.",
     stack: ["TensorFlow", "Keras", "NumPy"],
     metric: "RMSE 13.36",
-    span: "md:row-span-2",
+    href: "https://github.com/VirajBarapatre/dynamic-pricing-simulator",
   },
   {
-    tag: "Research",
-    title: "Backtesting Notes",
-    subtitle: "Statistical inference playbook",
-    body: "Ongoing notes on rolling-window evaluation, walk-forward analysis, and confidence calibration for ML systems deployed in production finance.",
-    stack: ["Statistics", "Python"],
+    tag: "CV · OCR",
+    title: "Text-CAPTCHA-Solver",
+    subtitle: "Automated CAPTCHA recognition",
+    body: "Computer vision pipeline that segments and classifies distorted text CAPTCHAs using CNN-based OCR. Trained on synthetic data augmentation for robust generalization.",
+    stack: ["CNN", "OCR", "Python", "TensorFlow"],
+    href: "https://github.com/VirajBarapatre/Text-CAPTCHA-Solver",
+  },
+  {
+    tag: "Medical AI",
+    title: "Brain Tumor Detection",
+    subtitle: "MRI classification system",
+    body: "Deep learning model for automated brain tumor detection and classification from MRI scans. Achieves high diagnostic accuracy via transfer learning on medical imaging datasets.",
+    stack: ["CNN", "Transfer Learning", "Keras", "OpenCV"],
+    href: "https://github.com/VirajBarapatre/Brain-Tumor-Detection-System",
+  },
+  {
+    tag: "Medical AI",
+    title: "Skin Cancer Detection",
+    subtitle: "Dermatoscopic image classifier",
+    body: "AI-powered system for classifying skin lesions from dermatoscopic images. Leverages deep convolutional networks to distinguish benign from malignant cases with clinical-grade precision.",
+    stack: ["ResNet", "PyTorch", "OpenCV", "scikit-learn"],
+    href: "https://github.com/VirajBarapatre/Skin-Cancer-Detection-System",
   },
 ];
 
