@@ -41,7 +41,7 @@ const projects = [
     title: "CampusEYE",
     subtitle: "AI-Augmented Surveillance Platform",
     body: "End-to-end campus surveillance system with real-time threat detection leveraging computer vision pipelines. Engineered for low-latency inference and scalable event alerting.",
-    stack: ["OpenCV", "Python", "Deep Learning", "Flask"],
+    stack: ["OpenCV", "Python", "Deep Learning", "Flask", "Gemini API"],
     href: "https://github.com/VirajBarapatre/CampusEYE",
   },
   {
@@ -255,18 +255,23 @@ function Portfolio() {
 
       {/* Nav */}
       <header className={`fixed left-0 right-0 top-0 z-50 backdrop-blur-sm bg-background/60 transition-transform duration-300 ${navVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
-        <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center max-w-7xl px-6 py-4 md:px-12">
-          <a href="#top" className="font-display text-xl tracking-wide" style={{letterSpacing: '0.02em'}}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
+          <a href="#top" className="font-display text-xl tracking-tight">
             Viraj<span className="text-[--indigo-glow]">.</span>
           </a>
-          <nav className="hidden md:flex justify-center gap-8 text-sm text-muted-foreground">
+          <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
             <a href="#work" className="transition hover:text-foreground">Work</a>
             <a href="#experience" className="transition hover:text-foreground">Experience</a>
             <a href="#skills" className="transition hover:text-foreground">Skills</a>
             <a href="#credentials" className="transition hover:text-foreground">Credentials</a>
             <a href="#contact" className="transition hover:text-foreground">Contact</a>
           </nav>
-          <div className="w-20" aria-hidden="true" />
+          <a
+            href="#contact"
+            className="rounded-full border border-border bg-card/40 px-4 py-2 text-xs uppercase tracking-[0.18em] text-foreground backdrop-blur transition hover:border-[--indigo-glow] hover:text-[--indigo-glow]"
+          >
+            Get in touch
+          </a>
         </div>
       </header>
 
@@ -279,7 +284,7 @@ function Portfolio() {
         <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,1fr)_240px] md:items-start">
           <div className="space-y-10">
             <h1
-              className="font-display text-5xl leading-[1.05] tracking-tight text-balance md:text-8xl animate-fade-up will-change-anim"
+              className="mb-8 font-display text-5xl leading-[1.05] tracking-tight text-balance md:text-8xl animate-fade-up will-change-anim"
               style={{ ['--delay' as any]: '120ms' }}
             >
               Viraj Ravindra <em className="text-[--indigo-glow] not-italic">Barapatre</em>
@@ -307,10 +312,11 @@ function Portfolio() {
                 <span className="ml-2 transition-transform transform group-hover:translate-x-1">→</span>
               </a>
               <a
-                href="#contact"
+                href="/Viraj_Barapatre_Resume.pdf"
+                download
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:bg-card hover:border-[--indigo-glow]"
               >
-                Contact
+                Download CV →
               </a>
             </div>
           </div>
@@ -354,7 +360,7 @@ function Portfolio() {
               <em className="italic">Engineering</em> at the edge of data.
             </h2>
           </div>
-          <div className="space-y-6 text-lg leading-relaxed text-muted-foreground md:col-span-7 md:col-start-6">
+          <div className="space-y-6 text-lg leading-relaxed text-zinc-300 md:col-span-7 md:col-start-6">
             <p>
               Highly analytical and research-oriented Computer Science graduate (Class of 2026) with
               a strong foundation in data structures, algorithms, and deep learning frameworks.
@@ -453,8 +459,10 @@ function Portfolio() {
                   <span>{p.tag}</span>
                   <span className="font-mono">0{i + 1}</span>
                 </div>
-                <h3 className="mt-6 font-display text-3xl leading-tight md:text-4xl">{p.title}</h3>
-                <p className="mt-1 text-sm italic text-[--indigo-glow]">{p.subtitle}</p>
+                <div className="mt-6 space-y-1">
+                  <h3 className="font-display text-3xl leading-tight md:text-4xl">{p.title}</h3>
+                  <p className="text-sm italic text-[--indigo-glow]">{p.subtitle}</p>
+                </div>
                 <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
               </div>
               <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
