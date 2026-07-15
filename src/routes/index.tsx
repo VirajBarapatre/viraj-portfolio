@@ -312,9 +312,10 @@ function Portfolio() {
                 <span className="ml-2 transition-transform transform group-hover:translate-x-1">→</span>
               </a>
               <a
-                href="https://cdn.jsdelivr.net/gh/VirajBarapatre/viraj-portfolio@main/public/resume.pdf"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                download
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:bg-card hover:border-[--indigo-glow]"
               >
                 Download CV →
