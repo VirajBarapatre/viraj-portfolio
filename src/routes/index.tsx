@@ -99,9 +99,22 @@ const skills: { category: string; items: string[] }[] = [
       "Data Science",
       "Machine Learning",
       "Deep Learning",
+      "Generative AI (GenAI)",
       "Artificial Intelligence (AI)",
       "Natural Language Processing (NLP)",
-      "Large Language Models (LLM)",
+      "Vision-Language Models (VLMs)",
+      "Large Language Models (LLMs)",
+      "Prompt Engineering",
+      "Agentic AI",
+      "PyTorch",
+      "TensorFlow",
+      "Keras",
+      "scikit-learn",
+      "OpenCV",
+      "Convolutional Neural Networks (CNN)",
+      "Isolation Forest",
+      "Random Forest",
+      "Image Segmentation",
       "Predictive Analytics",
       "Predictive Modeling",
       "Statistical Data Analysis",
@@ -110,7 +123,22 @@ const skills: { category: string; items: string[] }[] = [
       "Quantitative Analytics",
       "Quantitative Finance",
       "Anomaly Detection",
-      "Prompt Engineering",
+    ],
+  },
+  {
+    category: "Data Analytics & Statistics",
+    items: [
+      "Exploratory Data Analysis (EDA)",
+      "Statistical Inference",
+      "Threshold Backtesting",
+      "Regression Modelling",
+      "Anomaly Detection",
+      "Geospatial Heatmaps",
+      "Pandas",
+      "NumPy",
+      "Advanced MS Excel (Pivot, INDEX/MATCH, XLOOKUP, MIS)",
+      "Direct-Query Metrics",
+      "Drill-Down Dashboards",
     ],
   },
   {
@@ -118,15 +146,27 @@ const skills: { category: string; items: string[] }[] = [
     items: [
       "PostgreSQL",
       "MySQL",
-      "RDBMS",
+      "Snowflake",
+      "GCP BigQuery",
+      "GCP Bigtable",
+      "Google Cloud Platform (GCP)",
+      "Cloud Storage",
       "Database Design",
-      "Database Development",
+      "Schema Design",
+      "Data Quality Management",
       "Data Pipelines",
       "Extract, Transform, Load (ETL)",
-      "Data Management",
+      "ELT Pipelines",
+      "Apache Airflow",
+      "Apache Beam",
+      "GCP DataProc",
+      "DataFlow",
+      "Batch & Real-Time Ingestion",
+      "Feature Engineering",
+      "Workflow Automation",
+      "Microsoft Power Platform",
       "Cloud Computing",
       "Amazon Web Services (AWS)",
-      "Google Cloud Platform (GCP)",
       "Microsoft Azure",
       "Terraform",
     ],
@@ -139,15 +179,49 @@ const skills: { category: string; items: string[] }[] = [
       "scikit-learn",
       "TensorFlow",
       "Keras",
+      "PyTorch",
+      "OpenCV",
       "FastAPI",
+      "Flask",
+      "Django",
       "REST APIs",
+      "React",
+      "Next.js",
       "Tailwind CSS",
       "Tableau",
       "Microsoft Power BI",
-      "Alteryx",
+      "Power BI (DAX)",
+      "Looker Studio",
+      "Apache Superset",
+      "Sigma",
+      "Astrato",
+      "Chart.js",
       "Git",
       "GitHub",
       "Continuous Integration and Continuous Delivery (CI/CD)",
+      "Docker",
+      "Kubernetes (K8s)",
+      "Microservices",
+    ],
+  },
+  {
+    category: "Dev & MLOps",
+    items: [
+      "Python",
+      "Flask",
+      "REST APIs",
+      "Django",
+      "Next.js",
+      "React",
+      "Docker",
+      "Kubernetes (K8s)",
+      "Microservices",
+      "Unit Testing",
+      "Integration Testing",
+      "UAT Testing",
+      "Performance Testing",
+      "Agile",
+      "DevOps",
     ],
   },
   {
@@ -315,10 +389,9 @@ function Portfolio() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                download
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition hover:bg-card hover:border-[--indigo-glow]"
               >
-                Download CV →
+                View Resume →
               </a>
             </div>
           </div>
@@ -400,7 +473,7 @@ function Portfolio() {
               <p className="mt-1 text-sm text-muted-foreground">Nagpur, India</p>
             </div>
             <div className="rounded-full border border-border px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              Dec 2025 — Present
+              Dec 2025 — June 2026
             </div>
           </div>
 
@@ -545,13 +618,13 @@ function Portfolio() {
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <div className="border-t border-border pt-3">
                   <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    Graduation
+                    Graduated
                   </div>
                   <div className="mt-1 font-display text-lg text-foreground">June 2026</div>
                 </div>
                 <div className="border-t border-border pt-3">
                   <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">CGPA</div>
-                  <div className="mt-1 font-display text-lg text-foreground">8.01 / 10.00</div>
+                  <div className="mt-1 font-display text-lg text-foreground">8.09 / 10.00</div>
                 </div>
               </div>
             </div>
